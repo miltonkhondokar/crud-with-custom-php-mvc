@@ -51,7 +51,7 @@
                 <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
 
                     <li class="nav-item">
-                        <a href="<?php echo url('create-sales')?>" class="nav-link">
+                        <a href="<?php echo url('sales-form')?>" class="nav-link">
                             <i class="nav-icon far fa-circle text-warning"></i>
                             <p>Add Sales</p>
                         </a>

@@ -57,7 +57,7 @@
                 <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
 
                     <li class="nav-item">
-                        <a href="<?php echo url('create-sales')?>" class="nav-link">
+                        <a href="<?php echo url('sales-form')?>" class="nav-link">
                             <i class="nav-icon far fa-circle text-warning"></i>
                             <p>Add Sales</p>
                         </a>
@@ -75,25 +75,7 @@
 
 
 
-    <?php
 
-    $ipaddress = '';
-    if (isset($_SERVER['HTTP_CLIENT_IP']))
-        $ipaddress = $_SERVER['HTTP_CLIENT_IP'];
-    else if(isset($_SERVER['HTTP_X_FORWARDED_FOR']))
-        $ipaddress = $_SERVER['HTTP_X_FORWARDED_FOR'];
-    else if(isset($_SERVER['HTTP_X_FORWARDED']))
-        $ipaddress = $_SERVER['HTTP_X_FORWARDED'];
-    else if(isset($_SERVER['HTTP_FORWARDED_FOR']))
-        $ipaddress = $_SERVER['HTTP_FORWARDED_FOR'];
-    else if(isset($_SERVER['HTTP_FORWARDED']))
-        $ipaddress = $_SERVER['HTTP_FORWARDED'];
-    else if(isset($_SERVER['REMOTE_ADDR']))
-        $ipaddress = $_SERVER['REMOTE_ADDR'];
-    else
-        $ipaddress = 'UNKNOWN';
-    echo  "IP - ".$ipaddress;
-    ?>
 
     <div class="content-wrapper">
         <div class="content-header">
@@ -124,9 +106,19 @@
                             <div class="card-header">
                                 <h3 class="card-title">New Sales</h3>
                             </div>
-                            <!-- /.card-header -->
-                            <!-- form start -->
-                            <form id="sales_tracker" method="post" enctype="multipart/form-data" action="">
+
+
+
+                            <?php
+
+                                        echo "<pre>";
+                                        print_r($data);
+                                        echo "</pre>";
+
+                            ?>
+
+
+                            <form id="sales_tracker" method="post" enctype="multipart/form-data">
                                 <div class="card-body">
                                     <div class="row">
 
@@ -134,7 +126,7 @@
                                             <div class="form-group">
                                                 <label for="label_for_sales_by">Sales By</label>
                                                 <select class="form-control" name="entry_by">
-                                                    <option>- select -</option>
+                                                    <option value="">- select -</option>
                                                     <option value="020123">USER 1</option>
                                                     <option value="030123">USER 2</option>
                                                 </select>
@@ -159,7 +151,7 @@
                                             <div class="form-group">
                                                 <label for="label_for_buyer_city">City</label>
                                                 <select class="form-control" name="city">
-                                                    <option>- select -</option>
+                                                    <option value="">- select -</option>
                                                     <option value="DHK">Dhaka</option>
                                                     <option value="RAJ">Rajshahi</option>
                                                 </select>
@@ -188,7 +180,7 @@
 
                                             <div class="form-group">
                                                 <label for="label_for_amount">Amount</label>
-                                                <input type="text" class="form-control" id="amount"  name="amount"  value="" placeholder="0.00">
+                                                <input type="text" class="form-control" id="amount"  name="amount"  value="" placeholder="Amount">
                                             </div>
                                             <div class="form-group">
                                                 <label for="label_for_note">Note</label>
@@ -341,7 +333,7 @@
                 amount: {
                     validators: {
                         regexp: {
-                            regexp: /^\d$|(\.\d{0,2})$/,
+                            regexp: /^[0-9]*$/,
                             message: 'The Amount field can only consist of number. '
                         }
                     }
@@ -354,6 +346,29 @@
 
 
 
+
+    $(document).ready(function() {
+        $('#sales_tracker').submit(function(e) {
+            e.preventDefault();
+            $.ajax({
+                type: "POST",
+                url: '<?php echo url('create-sales')?>',
+                data: $(this).serialize(),
+                success:function(data) {
+                    // data = JSON.parse(data);
+
+                    console.log(data)
+                    // if (data.success)
+                    //     alert('success!');
+                    // else
+                    //     alert('got failure response from PHP');
+                },
+                error:function(){
+                    alert("failure");
+                }
+            });
+        });
+    });
 
 </script>
 
