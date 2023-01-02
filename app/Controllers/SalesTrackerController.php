@@ -12,14 +12,14 @@ class SalesTrackerController extends Controller
 //    $salt = 'U7Dnb0dx2F18ANz3q4Ou5lfSpyVXjLirhMQ6ZKEatwe9vIgGcmoWHsYRCkBJPT';
     public function index(): void
     {
-        views('dashboard');
+        $salesData = new Sale();
+        $data = $salesData->getRecords();
+        views('dashboard', ['data' => $data]);
     }
 
     public function create_form(): void
     {
-        $salesData = new Sale();
-        $data = $salesData->getRecords();
-        views('create_sales', ['data' => $data]);
+        views('create_sales');
     }
 
     public function create_sales(): void

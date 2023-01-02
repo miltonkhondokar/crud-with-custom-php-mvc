@@ -147,11 +147,6 @@
 
 
 
-
-
-
-
-
                 <div class="row">
                     <div class="col-12">
                         <div class="card">
@@ -162,40 +157,51 @@
                                 <table id="example2" class="table table-bordered table-hover">
                                     <thead class="table-danger">
                                     <tr>
-                                        <th>Rendering engine</th>
-                                        <th>Browser</th>
-                                        <th>Platform(s)</th>
-                                        <th>Engine version</th>
-                                        <th>CSS grade</th>
+                                        <th>#SL</th>
+                                        <th>Buyer</th>
+                                        <th>Phone</th>
+                                        <th>Email</th>
+                                        <th>City</th>
+                                        <th>Receipt ID</th>
+                                        <th>Item(s)</th>
+                                        <th>Amount</th>
+                                        <th>Entry At</th>
+                                        <th>Entry By</th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                        <tr class="table-warning">
-                                            <td>Trident</td>
-                                            <td>Internet
-                                                Explorer 4.0
-                                            </td>
-                                            <td>Win 95+</td>
-                                            <td> 4</td>
-                                            <td>X</td>
+
+                                    <?php
+                                        $i = 1;
+                                        foreach ($data as $key=>$value)
+                                        {
+                                    ?>
+                                        <tr class="<?php if($key%2 == 0){echo 'table-warning';}else{ echo 'table-info';}?>">
+                                            <td><?php echo $i;?></td>
+                                            <td><?php echo $value['buyer'];?></td>
+                                            <td><?php echo $value['phone'];?></td>
+                                            <td><?php echo $value['buyer_email'];?></td>
+                                            <td><?php echo $value['city'];?></td>
+                                            <td><?php echo $value['receipt_id'];?></td>
+                                            <td><?php echo $value['items'];?></td>
+                                            <td><?php echo $value['amount'];?></td>
+                                            <td><?php echo $value['entry_at'];?></td>
+                                            <td><?php echo $value['entry_by'];?></td>
                                         </tr>
-                                        <tr class="table-info">
-                                            <td>Trident</td>
-                                            <td>Internet
-                                                Explorer 5.0
-                                            </td>
-                                            <td>Win 95+</td>
-                                            <td>5</td>
-                                            <td>C</td>
-                                        </tr>
+                                    <?php  $i++; }?>
                                     </tbody>
                                     <tfoot class="table-danger">
                                     <tr>
-                                        <th>Rendering engine</th>
-                                        <th>Browser</th>
-                                        <th>Platform(s)</th>
-                                        <th>Engine version</th>
-                                        <th>CSS grade</th>
+                                        <th>#SL</th>
+                                        <th>Buyer</th>
+                                        <th>Phone</th>
+                                        <th>Email</th>
+                                        <th>City</th>
+                                        <th>Receipt ID</th>
+                                        <th>Item(s)</th>
+                                        <th>Amount</th>
+                                        <th>Entry At</th>
+                                        <th>Entry By</th>
                                     </tr>
                                     </tfoot>
                                 </table>

@@ -106,18 +106,6 @@
                             <div class="card-header">
                                 <h3 class="card-title">New Sales</h3>
                             </div>
-
-
-
-                            <?php
-
-                                        echo "<pre>";
-                                        print_r($data);
-                                        echo "</pre>";
-
-                            ?>
-
-
                             <form id="sales_tracker" method="post" enctype="multipart/form-data">
                                 <div class="card-body">
                                     <div class="row">
