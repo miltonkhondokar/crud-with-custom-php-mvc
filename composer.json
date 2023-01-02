@@ -1,0 +1,26 @@
+{
+    "name": "mi/cmvc",
+    "description": "A simple custom MVC with PHP.",
+    "type": "project",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/"
+        },
+        "files": [
+            "app/Base/custom_functions.php",
+            "app/Helpers/helpers.php"
+        ]
+    },
+    "authors": [
+        {
+            "name": "Milton Khondokar",
+            "email": "km.sazzad.hossain.cse.bu@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">=7.1",
+        "pecee/simple-router": "dev-master"
+    }
+}
