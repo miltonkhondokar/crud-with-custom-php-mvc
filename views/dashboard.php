@@ -7,6 +7,8 @@
     <title>CMVC</title>
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="<?php echo CSS.'/dataTables.bootstrap4.min.css' ?>">
     <link rel="stylesheet" href="<?php echo CSS.'/responsive.bootstrap4.min.css' ?>">
@@ -90,61 +92,61 @@
             <div class="container-fluid">
 
 
+
                 <div class="row">
-                    <div class="col-lg-3 col-6">
-                        <div class="small-box bg-info">
-                            <div class="inner">
-                                <h3>150</h3>
-                                <p>New Orders</p>
+                    <div class="col-md-12">
+                        <div class="card card-danger">
+                            <div class="card-header">
+                                <h3 class="card-title">Filter Data</h3>
                             </div>
-                            <div class="icon">
-                                <i class="ion ion-bag"></i>
-                            </div>
-                            <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-6">
-                        <div class="small-box bg-success">
-                            <div class="inner">
-                                <h3>53<sup style="font-size: 20px">%</sup></h3>
+                            <div class="card-body">
 
-                                <p>Sales Today</p>
-                            </div>
-                            <div class="icon">
-                                <i class="ion ion-stats-bars"></i>
-                            </div>
-                            <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-6">
-                        <div class="small-box bg-warning">
-                            <div class="inner">
-                                <h3>44</h3>
 
-                                <p>User Registrations</p>
-                            </div>
-                            <div class="icon">
-                                <i class="ion ion-person-add"></i>
-                            </div>
-                            <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-6">
-                        <div class="small-box bg-danger">
-                            <div class="inner">
-                                <h3>65</h3>
+                                <div class="row">
+                                    <div class="col-4">
+                                        <div class="form-group">
+                                            <label>From Date:</label>
+                                            <div class="input-group">
+                                                <input type="text" class="form-control"  id="from_date" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="form-group">
+                                            <label>To Date:</label>
+                                            <div class="input-group">
+                                                <input type="text" class="form-control"  id="to_date" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="form-group">
+                                            <label>User</label>
+                                            <select class="form-control" name="entry_by">
+                                                <option value="">- select -</option>
+                                                <option value="020123">USER 1</option>
+                                                <option value="030123">USER 2</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
 
-                                <p>Unique Visitors</p>
+
+
+
+
                             </div>
-                            <div class="icon">
-                                <i class="ion ion-pie-graph"></i>
+                            <div class="card-footer">
+                                <button type="submit" class="btn btn-danger float-right">Filter</button>
                             </div>
-                            <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+
                         </div>
+
                     </div>
+
+
+
                 </div>
-
-
 
 
                 <div class="row">
@@ -235,9 +237,10 @@
         </div>
     </footer>
 </div>
-
-<script src="<?php echo JS.'/jquery.min.js'?>"></script>
-<script src="<?php echo JS.'/jquery-ui.min.js'?>"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+<!--<script src="--><?php //echo JS.'/jquery.min.js'?><!--"></script>-->
+<!--<script src="--><?php //echo JS.'/jquery-ui.min.js'?><!--"></script>-->
 <script>
     $.widget.bridge('uibutton', $.ui.button)
 </script>
@@ -276,6 +279,13 @@
             "responsive": true,
         });
     });
+</script>
+
+<script>
+    $( function() {
+        $( "#from_date" ).datepicker({ dateFormat: 'yy-mm-dd' }).val();
+        $( "#to_date" ).datepicker({ dateFormat: 'yy-mm-dd' }).val();
+    } );
 </script>
 </body>
 </html>

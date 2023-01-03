@@ -50,10 +50,37 @@ class SalesTrackerController extends Controller
             $amount = preg_replace('/[^0-9]/u','', strip_tags($_POST['amount']));
             $note = preg_replace('/[^A-Za-z0-9 ().@#,:-]/u','', strip_tags($_POST['note']));
 
+
+            $ipaddress = '';
+            if (isset($_SERVER['HTTP_CLIENT_IP'])) {
+                $ipaddress = $_SERVER['HTTP_CLIENT_IP'];
+            }
+            else if(isset($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+                $ipaddress = $_SERVER['HTTP_X_FORWARDED_FOR'];
+            }
+            else if(isset($_SERVER['HTTP_X_FORWARDED'])) {
+                $ipaddress = $_SERVER['HTTP_X_FORWARDED'];
+            }
+            else if(isset($_SERVER['HTTP_X_CLUSTER_CLIENT_IP'])) {
+                $ipaddress = $_SERVER['HTTP_X_CLUSTER_CLIENT_IP'];
+            }
+            else if(isset($_SERVER['HTTP_FORWARDED_FOR'])) {
+                $ipaddress = $_SERVER['HTTP_FORWARDED_FOR'];
+            }
+            else if(isset($_SERVER['HTTP_FORWARDED'])) {
+                $ipaddress = $_SERVER['HTTP_FORWARDED'];
+            }
+            else if(isset($_SERVER['REMOTE_ADDR'])) {
+                $ipaddress = '127.0.0.1';
+            } else{
+                $ipaddress = 'UNKNOWN';
+            }
+
             $data = array(
                 'entry_by' => $entry_by,
                 'buyer' => $buyer,
-                'phone' => '880'.$phone,
+                'buyer_ip' => $ipaddress,
+                'phone' => (!empty($phone)) ? '880'.$phone : '',
                 'buyer_email' => $buyer_email,
                 'city' => $city,
                 'receipt_id' => $receipt_id,
