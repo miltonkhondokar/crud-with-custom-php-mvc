@@ -97,11 +97,27 @@
 
 
 
-
         <section class="content">
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-12">
+
+                        <div class="alert alert-danger alert-dismissible" id="alert-show" style="display: none;">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                            <h5><i class="icon fas fa-ban"></i> Alert!</h5>
+                            You can again submit this form after 24 hours
+                        </div>
+
+                        <div class="alert alert-success alert-dismissible"  id="success-show"  style="display: none;">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                            <h5><i class="icon fas fa-check"></i> Success</h5>
+                            Data inserted successfully.
+                        </div>
+
+
+
+
+
                         <div class="card card-primary">
                             <div class="card-header">
                                 <h3 class="card-title">New Sales</h3>
@@ -112,7 +128,7 @@
 
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label for="label_for_sales_by">Sales By</label>
+                                                <label for="label_for_sales_by">Entry By</label>
                                                 <select class="form-control" name="entry_by">
                                                     <option value="">- select -</option>
                                                     <option value="020123">USER 1</option>
@@ -203,6 +219,7 @@
 
 
 
+
     <footer class="main-footer">
         <strong>Copyright &copy; 2022-2023 <a href="https://www.linkedin.com/in/mekhondokar">milton khondokar</a>.</strong>
         All rights reserved.
@@ -271,6 +288,14 @@
                 validating: 'glyphicon glyphicon-refresh'
             },
             fields: {
+                entry_by: {
+                    validators: {
+                        regexp: {
+                            regexp: /^[0-9]*$/,
+                            message: 'The entry by can only consist of number. '
+                        }
+                    }
+                },
                 buyer: {
                     validators: {
                         stringLength: {
@@ -332,31 +357,28 @@
 
 
 
-
-
-
-    $(document).ready(function() {
-        $('#sales_tracker').submit(function(e) {
-            e.preventDefault();
-            $.ajax({
-                type: "POST",
-                url: '<?php echo url('create-sales')?>',
-                data: $(this).serialize(),
-                success:function(data) {
-                    // data = JSON.parse(data);
-
-                    console.log(data)
-                    // if (data.success)
-                    //     alert('success!');
-                    // else
-                    //     alert('got failure response from PHP');
-                },
-                error:function(){
-                    alert("failure");
+    $("#sales_tracker").on('submit', function(event) {
+        event.preventDefault();
+        event.stopImmediatePropagation();
+        $.ajax({
+            type: "POST",
+            url: '<?php echo url('create-sales')?>',
+            data: $(this).serialize(),
+            success:function(data) {
+                console.log(data)
+                if(data === 'y')
+                {
+                    $('#success-show').show();
+                    $('#alert-show').hide();
+                }else{
+                    $('#alert-show').show();
+                    $('#success-show').hide();
                 }
-            });
+            }
         });
+        return false;
     });
+
 
 </script>
 
