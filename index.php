@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 use Pecee\SimpleRouter\SimpleRouter;
 
 /* load autoload vendor file */

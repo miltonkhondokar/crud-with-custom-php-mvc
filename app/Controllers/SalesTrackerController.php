@@ -98,4 +98,21 @@ class SalesTrackerController extends Controller
         }
     }
 
+    public function report_filter(): void
+    {
+        if(array_key_exists('search', $_POST))
+        {
+            $data = $this->sales_model->report_filter($_POST);
+
+        }
+        elseif (array_key_exists('reset', $_POST))
+        {
+            $_SESSION['from_date'] = '';
+            $_SESSION['to_date'] = '';
+            $_SESSION['entry_by'] =  '';
+            $data = $this->sales_model->getRecords();
+        }
+        views('dashboard', ['data' => $data]);
+    }
+
 }

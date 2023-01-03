@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -71,6 +70,10 @@
 
 
 
+
+
+
+
     <div class="content-wrapper">
         <div class="content-header">
             <div class="container-fluid">
@@ -99,15 +102,18 @@
                             <div class="card-header">
                                 <h3 class="card-title">Filter Data</h3>
                             </div>
-                            <div class="card-body">
 
+
+                            <form id="sales_tracker_filter" method="post" action="<?php echo url('report_filter')?>" enctype="multipart/form-data">
+
+                            <div class="card-body">
 
                                 <div class="row">
                                     <div class="col-4">
                                         <div class="form-group">
                                             <label>From Date:</label>
                                             <div class="input-group">
-                                                <input type="text" class="form-control"  id="from_date" />
+                                                <input type="text" class="form-control"  id="from_date"   name="from_date" value="<?php echo (isset($_SESSION['from_date'])) ? $_SESSION['from_date'] : ''?>" />
                                             </div>
                                         </div>
                                     </div>
@@ -115,7 +121,7 @@
                                         <div class="form-group">
                                             <label>To Date:</label>
                                             <div class="input-group">
-                                                <input type="text" class="form-control"  id="to_date" />
+                                                <input type="text" class="form-control"  id="to_date"   name="to_date"  value="<?php echo (isset($_SESSION['to_date'])) ? $_SESSION['to_date'] : ''?>" />
                                             </div>
                                         </div>
                                     </div>
@@ -124,8 +130,8 @@
                                             <label>User</label>
                                             <select class="form-control" name="entry_by">
                                                 <option value="">- select -</option>
-                                                <option value="020123">USER 1</option>
-                                                <option value="030123">USER 2</option>
+                                                <option value="020123" <?php echo (isset($_SESSION['entry_by']) && $_SESSION['entry_by'] == "020123") ? 'selected' : '' ?>>USER 1</option>
+                                                <option value="030123"  <?php echo (isset($_SESSION['entry_by']) && $_SESSION['entry_by'] == "030123") ? 'selected' : '' ?>>USER 2</option>
                                             </select>
                                         </div>
                                     </div>
@@ -135,11 +141,12 @@
 
 
 
-                            </div>
+                                </div>
                             <div class="card-footer">
-                                <button type="submit" class="btn btn-danger float-right">Filter</button>
+                                <button type="submit" class="btn btn-success float-right" name="reset">Reset</button>
+                                <button type="submit" class="btn btn-danger float-right" name="search"  style="margin-right: 20px;">Filter</button>
                             </div>
-
+                            </form>
                         </div>
 
                     </div>
@@ -157,7 +164,7 @@
                             </div>
                             <div class="card-body">
                                 <table id="example2" class="table table-bordered table-hover">
-                                    <thead class="table-danger">
+                                    <thead class="table-default">
                                     <tr>
                                         <th>#SL</th>
                                         <th>Buyer</th>
@@ -192,7 +199,7 @@
                                         </tr>
                                     <?php  $i++; }?>
                                     </tbody>
-                                    <tfoot class="table-danger">
+                                    <tfoot class="table-default">
                                     <tr>
                                         <th>#SL</th>
                                         <th>Buyer</th>
