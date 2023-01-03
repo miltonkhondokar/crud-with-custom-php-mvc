@@ -53,7 +53,7 @@ class SalesTrackerController extends Controller
             $data = array(
                 'entry_by' => $entry_by,
                 'buyer' => $buyer,
-                'phone' => $phone,
+                'phone' => '880'.$phone,
                 'buyer_email' => $buyer_email,
                 'city' => $city,
                 'receipt_id' => $receipt_id,
@@ -69,9 +69,6 @@ class SalesTrackerController extends Controller
         }else{
             echo "n";
         }
-
-
-
     }
 
 }
