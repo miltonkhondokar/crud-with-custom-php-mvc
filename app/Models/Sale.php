@@ -14,7 +14,7 @@ class Sale extends Model
         return $this->fetchAllRows("SELECT * FROM {$this->tableName}");
     }
 
-    public function insertRecord($data): array
+    public function insertRecord($data): bool|string
     {
         return $this->insertGeneral($this->tableName, $data);
     }

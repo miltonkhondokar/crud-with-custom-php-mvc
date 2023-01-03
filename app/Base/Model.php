@@ -37,11 +37,11 @@ class Model
         return $this->execute($sqlQuery)->fetchAll(\PDO::FETCH_ASSOC);
     }
 
-    public function insertGeneral($tableName, $data): array
+    public function insertGeneral($tableName, $data): bool|string
     {
         $fields =  implode(", ", array_keys($data));
         $values =  "'".implode("','", array_values($data))."'";
         $sqlQuery = "INSERT INTO {$tableName} ({$fields}) VALUES ({$values}) ";
-        return $this->execute($sqlQuery)->fetchAll(\PDO::FETCH_ASSOC);
+        return $this->dbConnection()->exec($sqlQuery);
     }
 }

@@ -339,7 +339,7 @@
                     validators: {
                         regexp: {
                             regexp: /^[a-zA-Z ]*$/,
-                            message: 'The Receipt ID can only consist of alphabetical. '
+                            message: 'The Items can only consist of alphabetical. '
                         }
                     }
                 },
